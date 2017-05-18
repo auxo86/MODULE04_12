@@ -177,6 +177,7 @@
     </Compile>
     <Compile Include="Models\ProductSystem.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\CategoryProductsViewModel.cs" />
     <Compile Include="ViewModels\ProductViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
