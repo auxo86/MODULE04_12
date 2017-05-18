@@ -42,17 +42,35 @@ namespace MODULE04_09.Models
             return result;
         }
 
-        public IEnumerable<Product> GetProductsByCategoryID(int id)
+        //public IEnumerable<Product> GetProductsByCategoryID(int id)
+        //{
+        //    NorthwindEntities db = new NorthwindEntities();
+        //    var query = from p in db.Products
+        //                where p.CategoryID == id
+        //                select p;
+
+        //    var result = query.ToList();
+        //    return result;
+        //}
+
+        public CategoryProductsViewModel GetProductsByCategoryID(int id)
         {
             NorthwindEntities db = new NorthwindEntities();
             var query = from p in db.Products
                         where p.CategoryID == id
-                        select p;
+                        select new ProductViewModel
+                        {
+                            ProductID=p.ProductID,
+                            ProductName=p.ProductName,
+                            UnitPrice=p.UnitPrice
+                        };
+            CategoryProductsViewModel result = new CategoryProductsViewModel();
+            result.CategoryID = id;
+            result.CategoryName = db.Categories.Find(id).CategoryName;
+            result.Products = query.ToList();
 
-            var result = query.ToList();
             return result;
         }
-
 
     }
 }
